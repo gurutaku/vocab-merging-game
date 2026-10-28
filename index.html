@@ -6,6 +6,46 @@
 <meta name="theme-color" content="#f4f8ff">
 <title>Word Merge Quest — Gurutaku</title>
 <style>
+    .games-hub-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 14px;
+      border: 1px solid #f2c9dd;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fff5cf, #ffe8f1);
+      box-shadow: 0 3px 0 #ecc8dc;
+      color: #694978;
+      font-size: 14px;
+      font-weight: 850;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform .12s, box-shadow .12s
+    }
+
+    .games-hub-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 0 #ecc8dc
+    }
+
+    .games-hub-link:focus-visible {
+      outline: 3px solid #9c8cff;
+      outline-offset: 3px
+    }
+
+    .header-games-link {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 8px
+    }
+      .games-hub-link {
+        padding: 9px 11px
+      }
+
+      .games-hub-label {
+        display: none
+      }
     /* Footer */
     footer {
       text-align: center;
@@ -33,7 +73,8 @@
 </head>
 <body>
 <div class="app">
-  <header class="topbar"><div class="brand"><div class="brand-icon">Aa</div><span>Word Recipe</span></div><div class="top-pill" aria-live="polite">🏆 Personal best: <strong id="personalBest">0</strong></div></header>
+  <header class="topbar"><div class="brand"><div class="brand-icon">Aa</div><span>Word Recipe</span></div><div class="top-pill" aria-live="polite">🏆 Personal best: <strong id="personalBest">0</strong></div>  <div class="top-actions"><a class="games-hub-link" href="https://gurutaku.ca/coolgames/" aria-label="Back to Gurutaku Cool Games" title="Back to Gurutaku Cool Games"><span aria-hidden="true">🎮</span><span>More Games</span></a></div>
+</header>
   <section class="hero"><div><div class="eyebrow">A word-building challenge</div><h1>Word <span>Merge Quest!</span></h1><p>Two little words make one bigger word. Find the pair, merge them, and grow your word collection before time runs out!</p></div><div class="hero-art" aria-hidden="true"><div class="orb"></div><span class="spark sp1">✦</span><span class="spark sp2">✧</span><div class="hero-words"><span>RAIN</span><b>+</b><span>BOW</span></div></div></section>
   <section class="game-shell" aria-label="Word merge game">
     <div class="game-head"><div class="game-heading"><h2>✨ Build compound words</h2><p>Drag one word tile onto its matching partner.</p></div><div class="round-state" id="roundState"><span class="dot"></span><span id="roundLabel">Ready to play</span></div></div>
