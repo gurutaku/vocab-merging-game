@@ -443,6 +443,7 @@ function doMerge(i,j,recipe){
     // leave every tile permanently disabled after the first merge.
     try{
       spawnPair([i,j]);
+      reshuffleTiles();
       selected=null;
       highlighted=[];
       renderBoard();
@@ -471,7 +472,22 @@ function renderCollection(animate=false,newWord=''){
 function updateDefinition(recipe){if(!recipe){$('defWord').textContent='Ready, word explorer?';$('defText').textContent='Merge two word parts to discover a compound word, its meaning, and an example.';return;}$('defWord').textContent=recipe.word.toUpperCase();$('defText').textContent=`${recipe.meaning} Example: ${recipe.example}`;}
 function findAnyPair(){for(let i=0;i<board.length;i++){if(board[i].empty)continue;for(let j=i+1;j<board.length;j++){if(board[j].empty)continue;if(recipeMap.has(getKey(board[i].word,board[j].word)))return [i,j];}}return null;}
 function useHint(){if(!running||hints<=0)return;const pair=findAnyPair();if(!pair){showToast('Try shuffling the tiles!');return;}hints--;selected=pair[0];highlighted=pair;renderBoard();sayMessage(`Hint: drag ${board[pair[0]].word.toUpperCase()} onto ${board[pair[1]].word.toUpperCase()} to make a word.`);updateStats();const first=tileEls[pair[0]],second=tileEls[pair[1]];if(first)first.scrollIntoView({block:'nearest',behavior:'smooth'});}
-function shuffleBoard(){if(!running||lockBoard)return;const words=shuffle(board.map(t=>t.word));board=board.map((t,i)=>({...t,word:words[i],tone:Math.floor(Math.random()*6)}));selected=null;highlighted=[];renderBoard();sayMessage('Tiles shuffled! Look for another compound word.');}
+function shuffleBoard(){
+  if(!running||lockBoard)return;
+  reshuffleTiles();
+  sayMessage('Tiles shuffled! Look for another compound word.');
+}
+
+function reshuffleTiles(){
+  const words=shuffle(board.map(t=>t.word));
+  board=board.map((t,i)=>({
+    ...t,
+    word:words[i],
+    tone:Math.floor(Math.random()*6)
+  }));
+  selected=null;
+  highlighted=[];
+}
 function endGame(){
   if(!running)return;
   running=false;lockBoard=false;selected=null;
